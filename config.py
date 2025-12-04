@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://mektep_user:password123@localhost/mektep_db"
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'supersecretkey123')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')  # Render передаст URL базы
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
-    UPLOAD_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), "static/uploads")
+    UPLOAD_FOLDER = os.path.join('static', 'uploads')
