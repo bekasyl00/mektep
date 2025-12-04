@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Мұғалім қосу{% endblock %}
+{% block content %}
+  <h2>Мұғалім қосу</h2>
+    <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="name" class="form-label">Аты-жөні *</label>
+      <input id="name" name="name" class="form-control" value="{{ form_data.get('name','') }}">
+    </div>
+<div class="mb-3">
+    <label class="form-label">Қызметі</label>
+    <input type="text" class="form-control" name="position">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Фото</label>
+     <input type="file" name="photo" class="form-control">
+</div>
+
+    <div class="mb-3">
+      <label for="subject" class="form-label">Пәні *</label>
+      <input id="subject" name="subject" class="form-control" value="{{ form_data.get('subject','') }}">
+    </div>
+
+    <div class="mb-3">
+      <label for="years" class="form-label">Жұмыс өтілі (жыл)</label>
+      <input id="years" name="years" class="form-control" type="number" min="0" max="200" value="{{ form_data.get('years','') }}">
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Сипаттамасы</label>
+      <textarea id="description" name="description" class="form-control" rows="4">{{ form_data.get('description','') }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Қосу</button>
+  </form>
+{% endblock %}

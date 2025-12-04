@@ -1,0 +1,61 @@
+/* Общий фон и шрифты */
+body {
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Карточки каталога */
+.teacher-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    transition: transform 0.2s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Фото учителя */
+.teacher-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    margin-bottom: 15px;
+}
+
+/* Информация */
+.teacher-info h5 {
+    font-size: 20px;
+    margin: 5px 0;
+    text-align: center;
+    color: #333;
+}
+
+.teacher-info p {
+    font-size: 14px;
+    text-align: center;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Кнопки админа */
+.teacher-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.teacher-actions .btn {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+a{
+    text-decoration: none;
+}
