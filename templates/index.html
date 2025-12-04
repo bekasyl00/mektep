@@ -17,18 +17,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="btn btn-primary btn-lg" href="{{ url_for('catalog') }}">Каталог</a>
+                    <a class="btn btn-custom btn-lg" href="{{ url_for('catalog') }}">Каталог</a>
                 </li>
                 {% if session.admin %}
                 <li class="nav-item">
-                    <a class="btn btn-success btn-lg" href="{{ url_for('add_teacher') }}">Қосу</a>
+                    <a class="btn btn-custom btn-lg btn-success" href="{{ url_for('add_teacher') }}">Қосу</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}">Шығу</a>
+                    <a class="btn btn-custom btn-lg btn-danger" href="{{ url_for('logout') }}">Шығу</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}">Кіру</a>
+                    <a class="btn btn-custom btn-lg btn-primary" href="{{ url_for('login') }}">Кіру</a>
                 </li>
                 {% endif %}
             </ul>
@@ -39,7 +39,7 @@
 <div class="container mt-5 text-center">
     <h1>Қош келдіңіз!</h1>
     <p>Мұнда мектептегі мұғалімдер мен қызметкерлер каталогы.</p>
-    <a href="{{ url_for('catalog') }}" class="btn btn-primary btn-lg mt-3">Каталогты көру</a>
+    <a href="{{ url_for('catalog') }}" class="btn btn-custom btn-lg mt-3">Каталогты көру</a>
 </div>
 
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
