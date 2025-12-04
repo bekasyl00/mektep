@@ -20,17 +20,20 @@
         <input class="form-control me-2" type="text" name="q" placeholder="Іздеу..." value="{{ query if query }}">
         <button class="btn btn-primary btn-custom" type="submit">Іздеу</button>
       </form>
-      <ul class="navbar-nav ms-3">
+      <ul class="navbar-nav ms-3 d-flex flex-row flex-wrap">
+        <li class="nav-item me-2 mb-2 mb-lg-0">
+          <a class="btn btn-custom btn-success w-100" href="{{ url_for('catalog') }}">Каталог</a>
+        </li>
         {% if 'admin' not in session %}
-        <li class="nav-item">
-          <a class="btn btn-success btn-custom me-2" href="{{ url_for('login') }}">Кіру</a>
+        <li class="nav-item me-2 mb-2 mb-lg-0">
+          <a class="btn btn-success btn-custom w-100" href="{{ url_for('login') }}">Кіру</a>
         </li>
         {% else %}
-        <li class="nav-item">
-          <a class="btn btn-warning btn-custom me-2" href="{{ url_for('add_teacher') }}">Қосу</a>
+        <li class="nav-item me-2 mb-2 mb-lg-0">
+          <a class="btn btn-warning btn-custom w-100" href="{{ url_for('add_teacher') }}">Қосу</a>
         </li>
-        <li class="nav-item">
-          <a class="btn btn-danger btn-custom" href="{{ url_for('logout') }}">Шығу</a>
+        <li class="nav-item me-2 mb-2 mb-lg-0">
+          <a class="btn btn-danger btn-custom w-100" href="{{ url_for('logout') }}">Шығу</a>
         </li>
         {% endif %}
       </ul>
