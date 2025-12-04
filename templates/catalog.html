@@ -1,52 +1,69 @@
-{% extends "base.html" %}
-{% block title %}Каталог{% endblock %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Каталог</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Мектеп</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {% if session.admin %}
+                <li class="nav-item">
+                    <a class="btn btn-success btn-sm" href="{{ url_for('add_teacher') }}">Қосу</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-danger btn-sm" href="{{ url_for('logout') }}">Шығу</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="btn btn-primary btn-sm" href="{{ url_for('login') }}">Кіру</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="container mt-4">
-    <form id="catalog-search" action="{{ url_for('catalog') }}" method="get" class="d-flex mb-3">
-        <input type="text" name="q" class="form-control me-2" placeholder="Іздеу..." value="{{ query }}">
-        <button type="submit" class="btn btn-primary btn-custom">Іздеу</button>
+    <form id="search-form" class="d-flex mb-3" method="get" action="{{ url_for('catalog') }}">
+        <input class="form-control me-2" type="text" name="q" placeholder="Іздеу..." value="{{ query }}">
+        <button class="btn btn-outline-primary" type="submit">Іздеу</button>
     </form>
 
-    <div class="row">
+    <div class="row mt-3">
         {% for teacher in teachers %}
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card h-100 shadow-sm">
-                <img src="{{ url_for('static', filename='uploads/' ~ teacher.photo) }}" class="card-img-top" alt="{{ teacher.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ teacher.name }}</h5>
-                    <p class="card-text">{{ teacher.position }} | {{ teacher.subject }}</p>
-                </div>
+        <div class="col-md-4 mb-4">
+            <div class="teacher-card">
+                <a href="{{ url_for('profile', teacher_id=teacher.id) }}">
+                    <img src="{{ url_for('static', filename='uploads/' + teacher.photo) }}" alt="Фото {{ teacher.name }}">
+                    <div class="teacher-info">
+                        <h5>{{ teacher.name }}</h5>
+                        <p><strong>Пәні:</strong> {{ teacher.subject }}</p>
+                        <p><strong>Қызметі:</strong> {{ teacher.position }}</p>
+                        <p><strong>Жылдар:</strong> {{ teacher.years or '-' }}</p>
+                    </div>
+                    {% if session.admin %}
+                    <div class="teacher-actions">
+                        <a href="{{ url_for('edit_teacher', teacher_id=teacher.id) }}" class="btn btn-sm btn-warning">Өзгерту</a>
+                        <a href="{{ url_for('delete_teacher', teacher_id=teacher.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Сіз сенімдісіз бе?')">Өшіру</a>
+                    </div>
+                    {% endif %}
+                </a>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
 
-
-<div class="container mt-4">
-    <h2>Мұғалімдер каталогы</h2>
-    <div class="row mt-3">
-        {% for teacher in teachers %}
-        <div class="col-md-4 mb-4">
-            <div class="teacher-card">
-               <a href="{{ url_for('profile', teacher_id=teacher.id) }}" >
-                <img src="{{ url_for('static', filename='uploads/' + teacher.photo) }}" alt="Фото {{ teacher.name }}">
-                <div class="teacher-info">
-                    <h5>{{ teacher.name }}</h5>
-                    <p><strong>Пәні:</strong> {{ teacher.subject }}</p>
-                    <p><strong>Қызметі:</strong> {{ teacher.position }}</p>
-                    <p><strong>Жылдар:</strong> {{ teacher.years or '-' }}</p>
-                </div>
-                {% if session.admin %}
-                <div class="teacher-actions">
-                    <a href="{{ url_for('edit_teacher', teacher_id=teacher.id) }}" class="btn btn-sm btn-warning">Өзгерту</a>
-                    <a href="{{ url_for('delete_teacher', teacher_id=teacher.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Сіз сенімдісіз бе?')">Өшіру</a>
-                </div>
-                {% endif %}
-            </div>
-        </a></div>
-        {% endfor %}
-    </div>
-</div>
-{% endblock %}
-
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

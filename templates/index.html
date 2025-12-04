@@ -1,20 +1,47 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container text-center mt-5">
-    <h1>Мектеп мұғалімдері</h1>
-
-    <form id="index-search" action="{{ url_for('catalog') }}" method="get" class="d-flex justify-content-center mt-4">
-        <input type="text" name="q" class="form-control me-2" placeholder="Іздеу...">
-        <button type="submit" class="btn btn-primary btn-custom">Іздеу</button>
-    </form>
-
-    <div class="mt-4">
-        {% if 'admin' not in session %}
-        <a href="{{ url_for('login') }}" class="btn btn-success btn-custom me-2">Кіру</a>
-        {% else %}
-        <a href="{{ url_for('add_teacher') }}" class="btn btn-warning btn-custom me-2">Қосу</a>
-        <a href="{{ url_for('logout') }}" class="btn btn-danger btn-custom">Шығу</a>
-        {% endif %}
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Мектеп</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Мектеп</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="btn btn-primary btn-lg" href="{{ url_for('catalog') }}">Каталог</a>
+                </li>
+                {% if session.admin %}
+                <li class="nav-item">
+                    <a class="btn btn-success btn-lg" href="{{ url_for('add_teacher') }}">Қосу</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}">Шығу</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}">Кіру</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
+</nav>
+
+<div class="container mt-5 text-center">
+    <h1>Қош келдіңіз!</h1>
+    <p>Мұнда мектептегі мұғалімдер мен қызметкерлер каталогы.</p>
+    <a href="{{ url_for('catalog') }}" class="btn btn-primary btn-lg mt-3">Каталогты көру</a>
 </div>
-{% endblock %}
+
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
