@@ -59,3 +59,36 @@ body {
 a{
     text-decoration: none;
 }
+/* Общие стили для кнопок */
+.btn-custom {
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}
+
+/* Главная страница - крупные кнопки и поиск */
+#index-search {
+    max-width: 600px;
+    margin: 20px auto;
+}
+#index-search input[type="text"] {
+    height: 50px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    padding: 0 15px;
+}
+
+/* Каталог - поиск и кнопки меньше */
+#catalog-search input[type="text"] {
+    height: 40px;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 0 10px;
+}
